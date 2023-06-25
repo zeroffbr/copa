@@ -1,0 +1,4 @@
+Gerar AAB(android)
+    - eas build --platform android
+Gerar APK(android)
+    - eas build --profile preview --platform android --non-interactive
