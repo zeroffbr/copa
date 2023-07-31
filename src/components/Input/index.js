@@ -6,6 +6,7 @@ import { TextInput } from 'react-native-paper';
 export default function InputField({
   activeOpacity = 1,
   autoCapitalize,
+  editable,
   disabled,
   fieldButtonFunction,
   fieldButtonLabel,
@@ -25,7 +26,7 @@ export default function InputField({
     <View
       style={[{
         flexDirection: 'row',
-        marginBottom: 25,
+        marginBottom: 10,
         marginLeft:25,
         marginRight:25,
         alignItems:'center'
@@ -33,13 +34,15 @@ export default function InputField({
       onPressIn={onPress}
     >      
       <TextInput
-        left={<TextInput.Icon disabled icon={() => iconLeft}/>}
-        right={<TextInput.Icon disabled icon={() => iconRight}/>}
-        editable={disabled}
+        left={iconLeft&&<TextInput.Icon disabled icon={() => iconLeft}/>}
+        right={iconRight&&<TextInput.Icon disabled icon={() => iconRight}/>}
+        editable={editable}
+        disabled={disabled}
         autoCapitalize={autoCapitalize}
         placeholder={label}
         keyboardType={keyboardType}
-        style={{flex: 1, paddingVertical: 0, fontFamily: 'FIFA', backgroundColor:colors.cor5}}
+        style={{flex: 1, paddingVertical: 0, backgroundColor:colors.cor5, borderRadius:10, borderTopStartRadius:10, borderTopEndRadius:10}}
+        contentStyle={{fontFamily: 'FIFA'}}
         activeUnderlineColor={colors.cor2}
         placeholderTextColor={colors.cor4}
         textColor={colors.cor4}
@@ -49,7 +52,7 @@ export default function InputField({
         value={value}
       />
       <TouchableOpacity onPress={fieldButtonFunction}>
-        <Text style={{color: colors.cor4, fontWeight: '700'}}>{fieldButtonLabel}</Text>
+        <Text style={{color: colors.cor4, fontWeight: '700', fontFamily: 'FIFA'}}>{fieldButtonLabel}</Text>
       </TouchableOpacity>
     </View>
       </TouchableOpacity>

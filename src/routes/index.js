@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LoginScreen } from '../screens/login';
 import HomeScreen from '../screens/home';
-import { createStackNavigator, CardStyleInterpolators  } from "@react-navigation/stack";
+import { createStackNavigator, CardStyleInterpolators, TransitionPresets  } from "@react-navigation/stack";
 import LocalStorageController from '../class/LocalStorageController';
 import { useAutenticacaoContext } from '../hooks/autenticacao';
 import React from 'react';
@@ -12,11 +12,33 @@ import { colors } from '../assets/global/color';
 import { IconButton, MD3Colors } from 'react-native-paper';
 import { UsuarioScreen } from '../screens/usuario';
 import { CompeticaoScreen } from '../screens/competicao';
-import { CompeticaoInfoScreen } from '../screens/competicao/info';
+import { CompeticaoInfoScreen } from '../screens/competicao/_info';
 
 const StackPrincipal = createStackNavigator();
 const TabBottom      = createBottomTabNavigator();
 const StackCompeticoes = createStackNavigator();
+const horizontalTransition = {
+    ...TransitionPresets.SlideFromRightIOS,
+    cardStyleInterpolator: ({ current: { progress }, layouts }) => {
+      const translateX = progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [layouts.screen.width, 0],
+      });
+
+      return {
+        cardStyle: {
+          transform: [{ translateX }],
+          overflow: 'hidden',
+        },
+        overlayStyle: {
+          opacity: progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1],
+          }),
+        },
+      };
+    },
+};
 
 export function MainNavigator(){
     const { usuario, setUsuario, setImagemUsuario }   = useAutenticacaoContext();     
@@ -67,17 +89,23 @@ export function MainNavigator(){
         <NavigationContainer>
             <StackPrincipal.Navigator screenOptions={{headerShown: false}} initialRouteName="login">              
                 {state() ? (
-                    <StackPrincipal.Screen name="login" component={LoginScreen}  options={{
-                        title: 'Sign in',
-                        // When logging out, a pop animation feels intuitive
-                        // You can remove this if you want the default 'push' animation
-                        // animationTypeForReplace: state() ? 'pop' : 'push',
-                      }} />
+                    <StackPrincipal.Screen 
+                        name="login" 
+                        component={LoginScreen}  
+                        options={horizontalTransition}    
+                        // options={{
+                        //     title: 'Sign in',
+                        //     // When logging out, a pop animation feels intuitive
+                        //     // You can remove this if you want the default 'push' animation
+                        //     // animationTypeForReplace: state() ? 'pop' : 'push',
+                        // }} 
+                      />
                 ) : (
                     <StackPrincipal.Screen 
                         name="app" 
                         component={BottomNavigate} 
-                        options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+                        options={horizontalTransition}     
+                        // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
                     />
                 )}  
             </StackPrincipal.Navigator>
@@ -104,7 +132,7 @@ function BottomNavigate() {
                     height: 70,
                     borderRadius:borderRadius,
                     position: 'absolute',
-                }
+                },
             }} 
             backBehavior='history' 
             initialRouteName='home'
@@ -159,17 +187,20 @@ export const BottomNavigateCompeticoes = () => (
         <StackCompeticoes.Screen 
             name="competicao"           
             component={CompeticaoScreen}        
+            options={horizontalTransition}
             // options={{cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,}}     
         />
         <StackCompeticoes.Screen 
             name="competicao_info"           
-            component={CompeticaoInfoScreen}     
-            options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}        
+            component={CompeticaoInfoScreen} 
+            options={horizontalTransition}    
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}        
         />
         <StackCompeticoes.Screen 
             name="historico" 
-            component={CompeticaoScreen}       
-            options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+            component={CompeticaoScreen}  
+            options={horizontalTransition}     
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
         />
     </StackCompeticoes.Navigator>
 )
