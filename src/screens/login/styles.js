@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         fontSize: 11, 
         textAlign: 'center', 
         marginBottom: 5, 
-        marginTop: -15 
+        marginTop: -5 
     },
     touchableOpacityStyle: {
         position: 'absolute',
