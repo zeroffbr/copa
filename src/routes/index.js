@@ -13,6 +13,11 @@ import { IconButton, MD3Colors } from 'react-native-paper';
 import { UsuarioScreen } from '../screens/usuario';
 import { CompeticaoScreen } from '../screens/competicao';
 import { CompeticaoInfoScreen } from '../screens/competicao/_info';
+import { SorteioScreen } from '../screens/competicao/_sorteio';
+import { FaseGrupoScreen } from '../screens/competicao/_tabela';
+import { EliminatoriaScreen } from '../screens/competicao/_eliminatoria';
+import { JogosScreen } from '../screens/competicao/_jogos';
+import { PremiacoesScreen } from '../screens/competicao/_premiacao';
 
 const StackPrincipal = createStackNavigator();
 const TabBottom      = createBottomTabNavigator();
@@ -199,6 +204,36 @@ export const BottomNavigateCompeticoes = () => (
         <StackCompeticoes.Screen 
             name="historico" 
             component={CompeticaoScreen}  
+            options={horizontalTransition}     
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+        />
+        <StackCompeticoes.Screen 
+            name="sorteio" 
+            component={SorteioScreen}  
+            options={horizontalTransition}     
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+        />
+        <StackCompeticoes.Screen 
+            name="fase_grupo" 
+            component={FaseGrupoScreen}  
+            options={horizontalTransition}     
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+        />
+        <StackCompeticoes.Screen 
+            name="eliminatoria" 
+            component={EliminatoriaScreen}  
+            options={horizontalTransition}     
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+        />
+        <StackCompeticoes.Screen 
+            name="jogos" 
+            component={JogosScreen}  
+            options={horizontalTransition}     
+            // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
+        />
+        <StackCompeticoes.Screen 
+            name="premiacoes" 
+            component={PremiacoesScreen}  
             options={horizontalTransition}     
             // options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,}}
         />

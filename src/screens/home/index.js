@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Modal, Pressable, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import { ActivityIndicator, Alert, FlatList, Modal, Pressable, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import { colors } from '../../assets/global/color';
 import { useAutenticacaoContext } from '../../hooks/autenticacao';
 import LocalStorageController from '../../class/LocalStorageController';
@@ -21,6 +21,31 @@ export default function HomeScreen() {
         size:32
     }
   }
+
+  const data = [
+    {title:'Copa 2022', subtitle:'Resultado da competição', competicao_id:1},
+    {title:'spinoff "é mais de 8000"', subtitle:'Resultado da competição', competicao_id:2}
+  ]
+  const keyExtractor  = React.useCallback((item) => String(item.competicao_id),[]);   
+  const renderItem    = React.useCallback(
+    ({item}) => 
+      <>
+        {data.length > 0 &&  
+          <ButtonGeneric 
+            title={item.title}
+            subtitle={item.subtitle}
+            onPress={async ()=>{ 
+              await navegacao.navigate('campeonatoHome')  
+              await navegacao.navigate('campeonatoHome', { 
+                screen: 'competicao_info',
+                params: { ...item }
+              })  
+            }} 
+          /> 
+        }
+      </>
+  );  
+
   return (
     <SafeAreaView style={styles.container}>
         <Modal
@@ -53,20 +78,19 @@ export default function HomeScreen() {
           // onPress={() => { navegacao.navigate('historico'); }}
           // onPress={() => { navegacao.navigate('competicao'); }}
         />
-        <ButtonGeneric 
-          title={'Copa 2022'}
-          subtitle={'Resultado da competição'}
-          // onPress={() => { navegacao.navigate('competicao_info',{'competicao_id':1}); }}
+        <FlatList 
+          data={data}
+          // estimatedItemSize={111}
+          keyExtractor={keyExtractor}
+          // ListFooterComponent={<FooterList load={loading} />}
+          // onEndReached={()=>{ loadAPI('',page) }}
+          onEndReachedThreshold={0.5}
+          // onRefresh={refresh}
+          // refreshing={refreshing}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          windowSize={50}
         />
-        <ButtonGeneric 
-          title={'spinoff "é mais de 8000"'}
-          subtitle={'Resultado da competição'}
-          onPress={()=>{
-            console.log('aqui')
-          }} 
-        />
-        <ButtonGeneric title={'spinoff "é mais de 8000"'} subtitle={'Resultado da competição'} />
-        <ButtonGeneric title={'spinoff "é mais de 8000"'} subtitle={'Resultado da competição'} />
     </SafeAreaView>
   );
 }

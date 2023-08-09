@@ -18,10 +18,10 @@ export default function Toolbar({
     <Header
         barStyle='dark-content'
         backgroundColor={backgroundColor}
-        containerStyle={[{borderBottomColor:'transparent'}, containerStyle]}
+        containerStyle={[{borderBottomColor:'transparent'}, containerStyle]}   
         centerComponent={{
             text: text,
-            style: [{ color: "#fff", fontFamily: 'FIFA', fontSize:28,}, textStyle]
+            style: [{ color: "#fff", fontFamily: 'FIFA', fontSize:28, textAlign:'center', width:'100%', flex:1}, textStyle]
         }}
         centerContainerStyle={centerContainerStyle}
         leftComponent={leftComponent}
