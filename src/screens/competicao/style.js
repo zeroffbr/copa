@@ -21,4 +21,25 @@ export const styles = StyleSheet.create({
         // width: '95%',
         
     },
+    dataTableTextFirst:{
+        fontFamily: 'FIFA',
+        fontSize: 18, 
+        color:'white',
+        width: 200,
+    }, 
+
+    dataTableText:{
+        fontFamily: 'FIFA',
+        fontSize: 18, 
+        color:'white',
+        width: 50,
+        textAlign:'center',
+    },
+
+    text:{
+        fontFamily: 'FIFA',
+        fontSize: 25, 
+        color:'white',
+        textAlign:'center',
+    }
 });
