@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Text,View, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text,View, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {  Feather, Ionicons } from '@expo/vector-icons';
 
@@ -31,7 +31,8 @@ export function CompeticaoInfoScreen(props) {
         leftComponent={<TouchableOpacity style={{margin:-5, }} onPress={() => {navegacao.goBack()}}><Ionicons name="chevron-back-circle-outline" size={32} color={'white'}/></TouchableOpacity>}
       />
       <SafeAreaView style={[styles.container, {paddingTop:10}]}>  
-        
+      
+      <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} >
       <Card style={{marginHorizontal:20, backgroundColor:colors.cor1}}>
         <Card.Title 
           title={params.title}
@@ -52,7 +53,7 @@ export function CompeticaoInfoScreen(props) {
           buttonStyle={{marginVertical:10}}
           onPress={()=>{ navegacao.navigate('sorteio') }} 
         />
-        
+
         <ButtonGeneric 
           title={'Tabela da Competição'}
           subtitle={'lorem ipsum'}
@@ -80,6 +81,7 @@ export function CompeticaoInfoScreen(props) {
           buttonStyle={{marginVertical:10}}
           onPress={()=>{ navegacao.navigate('premiacoes') }} 
         />
+      </ScrollView>  
       </SafeAreaView>
     </>
   );

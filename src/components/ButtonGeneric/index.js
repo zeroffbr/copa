@@ -27,8 +27,8 @@ export default function ButtonGeneric({
             
             {subtitle !== '' ? (
                 <>
-                    <Text style={[{ flex:0.8,textAlign:'center', fontSize: 30, color:colors.cor2, fontFamily: 'FIFA', textAlignVertical:'center', marginBottom:-10 }, textStyle]}>{title}</Text>
-                    <Text style={[{ flex:0.2,textAlign:'center', fontSize: 16, color:colors.cor4, fontFamily: 'FIFA', margin:8, marginTop:0, marginBottom:10 }, textSubtitleStyle]}>{subtitle}</Text>
+                    <Text style={[{ flex:0.8,textAlign:'center', fontSize: 25, color:colors.cor2, fontFamily: 'FIFA', textAlignVertical:'center', marginBottom:-10 }, textStyle]}>{title}</Text>
+                    <Text style={[{ flex:0.2,textAlign:'center', fontSize: 14, color:colors.cor4, fontFamily: 'FIFA', margin:8, marginTop:0, marginBottom:10 }, textSubtitleStyle]}>{subtitle}</Text>
                 </>
             ):(
                 <Text style={[{ textAlign:'center', fontSize: 18, color:colors.cor2, fontFamily: 'FIFA'},textStyle]}>{title}</Text>

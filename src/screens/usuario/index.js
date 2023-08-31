@@ -60,6 +60,7 @@ export function UsuarioScreen() {
   return (
     <SafeAreaView style={[styles.container]}>
       <View style={{flex:1,justifyContent:'space-between'}}>
+        <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} >
         <View>
           <Avatar
               size={150}
@@ -93,6 +94,8 @@ export function UsuarioScreen() {
             value={'(954) 9294-267'}
           />
         </View>
+          
+        </ScrollView>
         <View>
           <ButtonGeneric
             title='Atualizar Dados'

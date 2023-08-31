@@ -24,7 +24,7 @@ export default function HomeScreen() {
 
   const data = [
     {title:'Copa 2022', subtitle:'Resultado da competição', competicao_id:1},
-    {title:'spinoff "é mais de 8000"', subtitle:'Resultado da competição', competicao_id:2}
+    {title:'spinoff "é mais de 8000"', subtitle:'Resultado da competição', competicao_id:2},
   ]
   const keyExtractor  = React.useCallback((item) => String(item.competicao_id),[]);   
   const renderItem    = React.useCallback(

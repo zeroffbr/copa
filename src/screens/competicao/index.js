@@ -21,16 +21,18 @@ export function CompeticaoScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ButtonGeneric 
-        title={'Copa 2022'}
-        subtitle={'Resultado da competição'}
-        onPress={()=>{ navegacao.navigate('competicao_info',{title:'Copa 2022', subtitle:'Resultado da competição'}) }} 
-      />
-      <ButtonGeneric 
-        title={'spinoff "é mais de 8000"'}
-        subtitle={'Resultado da competição'}
-        onPress={()=>{ navegacao.navigate('competicao_info',{title:'spinoff "é mais de 8000"', subtitle:'Resultado da competição'}) }} 
-      />
+      <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} >
+        <ButtonGeneric 
+          title={'Copa 2022'}
+          subtitle={'Resultado da competição'}
+          onPress={()=>{ navegacao.navigate('competicao_info',{title:'Copa 2022', subtitle:'Resultado da competição'}) }} 
+        />
+        <ButtonGeneric 
+          title={'spinoff "é mais de 8000"'}
+          subtitle={'Resultado da competição'}
+          onPress={()=>{ navegacao.navigate('competicao_info',{title:'spinoff "é mais de 8000"', subtitle:'Resultado da competição'}) }} 
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }

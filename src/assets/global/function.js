@@ -26,3 +26,10 @@ export function mensagemPersonalizada(descricao){
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export function zeroEsquerda(value, size) {
+    while (String(value).length < size){
+        value = `0${value}`
+    }
+    return value;
+}

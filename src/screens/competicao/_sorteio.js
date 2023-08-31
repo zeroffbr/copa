@@ -20,7 +20,7 @@ export function SorteioScreen(props) {
     return (
       <View style={{ marginHorizontal:10, marginVertical: 10 }}>
           <Avatar
-            size={140}
+            size={130}
             rounded
             source={xImage}
           />
@@ -29,7 +29,7 @@ export function SorteioScreen(props) {
     )
   }
 
-  //FlatList
+  //FlatList Sorteio
   const [data, setData] = React.useState([])
   const keyExtractor    = React.useCallback((item) => String(`${item.times_participante_id}`),[]);   
   const renderItem      = React.useCallback(
@@ -40,11 +40,8 @@ export function SorteioScreen(props) {
           <ComponenteSorteio data={item}/>
         }
       </>
-  );  
-
-  function sortearTimeParticipantes(){
-
-  }
+  );   
+  
 
   React.useEffect(() => {
     setData([
@@ -53,7 +50,6 @@ export function SorteioScreen(props) {
       { times_participante_id:3, time_id:0, time: null, participante_id:0, participante:''},
       { times_participante_id:4, time_id:0, time: null, participante_id:0, participante:''}
     ])
-
   }, []);
 
   return (
