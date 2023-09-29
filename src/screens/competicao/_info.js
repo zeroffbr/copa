@@ -39,12 +39,13 @@ export function CompeticaoInfoScreen(props) {
           titleStyle={{
             fontFamily:'FIFA',
             fontSize:24,
-            textAlign:'center'
+            textAlign:'center',
+            marginBottom:-8
           }}           
         />
-        <Card.Content>
+        {/* <Card.Content>
           <Text variant="bodyMedium" style={{fontFamily:'FIFA', fontSize:18,}}>{params.subtitle}</Text>
-        </Card.Content>
+        </Card.Content> */}
       </Card>      
         <ButtonGeneric 
           title={'Sortear Times'}
@@ -81,6 +82,13 @@ export function CompeticaoInfoScreen(props) {
           buttonStyle={{marginVertical:10}}
           onPress={()=>{ navegacao.navigate('premiacoes') }} 
         />
+        
+        {/* <ButtonGeneric 
+          title={'Regras'}
+          subtitle={'lorem ipsum'}
+          buttonStyle={{marginVertical:10}}
+          onPress={()=>{ navegacao.navigate('regras') }} 
+        /> */}
       </ScrollView>  
       </SafeAreaView>
     </>

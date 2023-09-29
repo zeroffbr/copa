@@ -42,6 +42,13 @@ export function EliminatoriaScreen(props) {
         { player1: "Vencedor SF1", player2: "Vencedor SF2" },
       ],
     },
+    {
+      phase_id:4,
+      name: "Disputa pelo 3º Lugar",
+      matches: [
+        { player1: "A Confirmar", player2: "A Confirmar" },
+      ],
+    },
   ];
 
   const ComponenteEscudo = ({descricao, escudo = null})=>{
@@ -58,46 +65,9 @@ export function EliminatoriaScreen(props) {
     )
   } 
 
-  const Bracket = ({phase}) => {
-    function Item({phase}){
-      return (
-        <View style={[styles2.bracket]}>
-          <Text style={styles2.phaseName}>{phase.name}</Text>
-          <View style={[styles2.matchesContainer,{justifyContent:'center', flex:1}]}>
-            <View style={styles2.matchesContainer}>
-              {phase.matches.map((match, index) => (
-                <View key={index} style={styles2.match}>
-                  <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                    <View> 
-                      <View style={{flexDirection:'row', marginVertical:2}}>
-                        <ComponenteEscudo/>
-                        <Text style={[styles2.phaseName, {fontSize:15}]}>{match.player1}</Text>
-                      </View>
-                      
-                      <View style={{flexDirection:'row', marginVertical:2}}>
-                        <ComponenteEscudo/>
-                        <Text style={[styles2.phaseName, {fontSize:15}]}>{match.player2}</Text>
-                      </View>
-                    </View>
-                    <View> 
-                      <View style={{flexDirection:'row', marginVertical:2}}>
-                        <Text style={[styles2.phaseName, {fontSize:15}]}>1</Text>
-                      </View>
-                      
-                      <View style={{flexDirection:'row', marginVertical:2}}>
-                        <Text style={[styles2.phaseName, {fontSize:15}]}>0</Text>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              ))}
-            </View>
-          </View>
-        </View>
-      )
-    }
+  function Match({phase, style}){
     return (
-      <View style={[styles2.bracket]}>
+      <View style={[styles2.bracket, style]}>
         <Text style={styles2.phaseName}>{phase.name}</Text>
         <View style={[styles2.matchesContainer,{justifyContent:'center', flex:1}]}>
           <View style={styles2.matchesContainer}>
@@ -130,13 +100,22 @@ export function EliminatoriaScreen(props) {
           </View>
         </View>
       </View>
+    )
+  }
+  const Bracket = ({phase, style, thirdPlace=false}) => {
+    return (
+      <>
+        {(!String(phase.name).includes('3º') && !thirdPlace) &&(
+          <Match phase={phase} style={style}/>
+        )}
+      </>
     );
   };
 
   const keyExtractor    = React.useCallback((item) => String(`${item.phase_id}`),[]);  
-  const renderItem      = React.useCallback(({item}) => 
-    <Bracket phase={item} /> 
-  );
+  const renderItem      = React.useCallback(({item}) => (
+        <Bracket phase={item} />
+  ));
 
   return (
     <>
@@ -159,17 +138,22 @@ export function EliminatoriaScreen(props) {
       >
         <Bracket tournament={tournamentData.phases} />
       </ScrollView> */}
-      <ScrollView>
+      <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} >
         <FlatList
-            data={tournamentData}
-            keyExtractor={keyExtractor}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator={false}
-            horizontal
-            contentContainerStyle={[styles2.contentContainer]}  
-            windowSize={50} 
-          />
-
+          data={tournamentData}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          contentContainerStyle={[styles2.contentContainer]}  
+          windowSize={50} 
+        />
+        
+        {/* Renderiza a fase "Disputa pelo 3º Lugar" após todas as outras fases */}
+        {tournamentData.filter(phase => phase.phase_id === 4).map(phase => (
+          <Match style={{marginTop:-20}} key={phase.phase_id} phase={phase} />
+        ))}
       </ScrollView>
     </View>
 
